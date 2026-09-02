@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05080d">
+<meta name="description" content="Nitro Velocity — premium open-world racing game web app.">
+<title>Nitro Velocity</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="app" class="app">
+  <header class="topbar">
+    <button class="brand nav-btn" data-screen="hub" aria-label="Nitro Velocity home"><span>NITRO</span> <b>VELOCITY</b></button>
+    <nav class="topnav" aria-label="Main navigation">
+      <button class="nav-btn" data-screen="hub">Open World</button>
+      <button class="nav-btn" data-screen="garage">Garage</button>
+      <button class="nav-btn" data-screen="settings">Settings</button>
+      <button class="nav-btn" data-screen="tracks">Tracks</button>
+      <button class="nav-btn" data-screen="race">Race</button>
+    </nav>
+    <div class="wallet"><span id="cashValue">$125,000</span><span id="xpValue">XP 12</span></div>
+  </header>
+
+  <main>
+    <section id="login" class="screen login-screen active">
+      <div class="login-art"><div class="road-lines"></div><div class="city-glow"></div><div class="hero-car hero-car-orange"></div></div>
+      <div class="login-panel glass">
+        <div class="eyebrow">SECURE DRIVER PROFILE</div>
+        <h1>NITRO<br><strong>VELOCITY</strong></h1>
+        <p>Build your driver profile, save your progress locally, and jump straight into the open world.</p>
+        <form id="loginForm" novalidate>
+          <label>Player ID<input id="playerId" name="playerId" autocomplete="username" minlength="3" maxlength="24" placeholder="NitroRacer_07" required></label>
+          <label>Password<input id="password" name="password" type="password" autocomplete="current-password" minlength="4" maxlength="64" placeholder="Minimum 4 characters" required></label>
+          <label class="check"><input id="rememberMe" type="checkbox" checked> Remember this device</label>
+          <button class="btn primary" type="submit">CREATE / ENTER PROFILE</button>
+          <div id="loginMessage" class="message" role="status"></div>
+        </form>
+        <div class="security-row"><span>🔒 Local session protected</span><span>☁ Cloud-ready save state</span></div>
+      </div>
+    </section>
+
+    <section id="hub" class="screen">
+      <div class="section-head"><div><div class="eyebrow">OPEN-WORLD HUB</div><h2>Explore. Race. Dominate.</h2></div><button class="btn primary nav-btn" data-screen="garage">ENTER GARAGE</button></div>
+      <div class="hub-map panel">
+        <div class="map-grid"></div><div class="city-label city-a">NEON DISTRICT</div><div class="city-label city-b">SUNSET DOCKS</div><div class="city-label city-c">HILLSIDE</div>
+        <div class="player-pin">YOU</div>
+        <div class="mission-board glass"><div class="eyebrow">MISSION BOARD</div><h3>Available Missions</h3>
+          <button class="mission" data-mission="street"><span>★ Street Race</span><small>1.2 km · +1,500</small></button>
+          <button class="mission" data-mission="escort"><span>🚨 Escort</span><small>2.4 km · +2,100</small></button>
+          <button class="mission" data-mission="takedown"><span>🎯 Take Down</span><small>1.8 km · +2,800</small></button>
+          <div id="missionStatus" class="message"></div>
+          <button class="btn secondary nav-btn" data-screen="tracks">VIEW TRACKS</button>
+        </div>
+        <div class="map-actions"><button class="map-action nav-btn" data-screen="garage">🚗<span>Garage</span></button><button class="map-action nav-btn" data-screen="tracks">🏁<span>Race</span></button><button class="map-action nav-btn" data-screen="settings">⚙<span>Settings</span></button></div>
+      </div>
+    </section>
+
+    <section id="garage" class="screen">
+      <div class="section-head"><div><div class="eyebrow">GARAGE</div><h2>Customize Your Ride</h2></div><div class="pill" id="garageSaved">Autosave ON</div></div>
+      <div class="garage-grid">
+        <div class="car-stage panel"><div class="showroom-lights"></div><div id="carVisual" class="car-visual car-audi" aria-label="Selected car"></div><div class="car-shadow"></div><div class="car-nameplate"><b id="carName">Audi R8 V10</b><span id="carTag">SPORTS CAR</span></div></div>
+        <aside class="garage-controls panel">
+          <div class="tabs" role="tablist"><button class="tab active" data-car="audi">Audi</button><button class="tab" data-car="range">Range Rover</button><button class="tab" data-car="thar">Thar</button></div>
+          <div class="stat-list" id="stats"></div>
+          <div class="control-block"><div class="control-title">Paint Finish</div><div id="colors" class="swatches"></div></div>
+          <div class="control-block"><div class="control-title">Alloy / Rim</div><div id="rims" class="rims"></div></div>
+          <button class="btn primary nav-btn" data-screen="tracks">SELECT TRACK</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="settings" class="screen">
+      <div class="section-head"><div><div class="eyebrow">SETTINGS & CONTROLS</div><h2>Configure Your Drive</h2></div><button id="resetSettings" class="btn secondary">RESET SETTINGS</button></div>
+      <div class="settings-grid">
+        <aside class="settings-nav panel"><button class="setting-nav active" data-setting-tab="controls">🎮 Controls</button><button class="setting-nav" data-setting-tab="graphics">🖥 Graphics</button><button class="setting-nav" data-setting-tab="audio">🔊 Audio</button><button class="setting-nav" data-setting-tab="gameplay">⚙ Gameplay</button></aside>
+        <div class="panel setting-content">
+          <div class="setting-tab active" data-tab="controls"><h3>Steering Mode</h3><div class="option-grid"><button class="option" data-steering="tilt"><strong>📱</strong><span>Tilt to Steer</span></button><button class="option" data-steering="touch"><strong>◀ ▶</strong><span>Touch Left / Right</span></button><button class="option" data-steering="wheel"><strong>◯</strong><span>Virtual Steering Wheel</span></button></div><p id="steeringStatus" class="message"></p></div>
+          <div class="setting-tab" data-tab="graphics"><h3>Graphics Quality</h3><div class="segmented" id="graphicsOptions"><button data-graphics="low">Low</button><button data-graphics="medium">Medium</button><button data-graphics="high">High</button><button data-graphics="ultra">Ultra</button></div><label class="switch-row">Motion Effects <input id="motionToggle" type="checkbox" checked><span class="switch"></span></label><p id="graphicsStatus" class="message"></p></div>
+          <div class="setting-tab" data-tab="audio"><h3>Audio</h3><label class="range-row">Music <output id="musicOut">80%</output><input id="musicRange" type="range" min="0" max="100" value="80"></label><label class="range-row">SFX <output id="sfxOut">90%</output><input id="sfxRange" type="range" min="0" max="100" value="90"></label><button id="muteToggle" class="btn secondary">Mute All</button></div>
+          <div class="setting-tab" data-tab="gameplay"><h3>Gameplay</h3><label class="switch-row">Traffic Assistance <input id="assistToggle" type="checkbox" checked><span class="switch"></span></label><label class="switch-row">Police Pursuit Mode <input id="policeToggle" type="checkbox" checked><span class="switch"></span></label><p class="message">All settings save automatically on this device.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracks" class="screen">
+      <div class="section-head"><div><div class="eyebrow">TRACK & ENVIRONMENT</div><h2>Choose Your Route</h2></div><div id="trackStatus" class="pill">Neon City Highway selected</div></div>
+      <div class="track-grid">
+        <button class="track-card selected" data-track="city"><div class="track-art city-art"></div><div class="track-copy"><b>Neon City Highway</b><span>Bright daylight · urban expressway · realistic shadows</span></div></button>
+        <button class="track-card" data-track="desert"><div class="track-art desert-art"></div><div class="track-copy"><b>Sunny Desert Canyon</b><span>Golden canyon · long straights · heat haze</span></div></button>
+        <button class="track-card" data-track="mountain"><div class="track-art mountain-art"></div><div class="track-copy"><b>Mountain Pass</b><span>Alpine route · tight corners · deep valleys</span></div></button>
+      </div>
+      <div class="center"><button class="btn primary nav-btn" data-screen="race">START RACE</button></div>
+    </section>
+
+    <section id="race" class="screen">
+      <div class="race-wrap panel" id="raceWrap">
+        <div class="race-sky"></div><div class="race-road"></div><div class="race-car"></div><div class="police p1"></div><div class="police p2"></div>
+        <div class="race-top"><span class="pill">POS <b id="position">2/6</b></span><span class="pill">TIME <b id="raceTime">00:00.0</b></span></div>
+        <div id="policeAlert" class="police-alert">🚨 POLICE ALERT <span>INTERCEPTORS INBOUND</span></div>
+        <div class="race-left"><div class="mini-map"><i></i><i></i><i></i></div><div class="race-tip">Hold NITRO for a clean escape.</div></div>
+        <div class="hud-speed"><div class="rpm"><span>RPM</span><b id="rpmValue">6.8</b></div><div class="speed-ring"><b id="speedValue">198</b><span>KM/H</span></div><div class="gear">GEAR <b id="gearValue">5</b></div></div>
+        <div class="race-bottom"><div class="nitro-bar"><span id="nitroFill"></span></div><button id="nitroBtn" class="nitro-btn">NITRO BOOST</button><button id="bustedBtn" class="busted-trigger">SIMULATE BUSTED</button></div>
+      </div>
+    </section>
+
+    <section id="busted" class="screen">
+      <div class="busted-screen panel"><div class="busted-glow"></div><div class="badge-large">POLICE CAPTURE</div><h2>BUSTED!</h2><p>You were caught by the police. Your current race has ended.</p><div class="busted-stats"><span>Cash Protected <b>$<span id="bustedCash">125,000</span></b></span><span>Best Time <b id="bestTime">—</b></span></div><div class="action-row"><button id="retryBtn" class="btn primary">↻ RETRY</button><button id="returnHubBtn" class="btn secondary">⌂ RETURN TO HUB</button></div></div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
